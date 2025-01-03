@@ -34,20 +34,21 @@ class Model extends Database
         $columns = implode(',', $keys);
         $values = implode(',:', $keys);
 
-        $query
+        $query = "insert into $this->table ($columns) values (:$values)";
+        return $this->run($query, $record);
     }
 
-    public function where($column, $value)
-    {
-        $column = addslashes($column);
-        $query = "select * from $this->table where $column = :value";
-        return $this->run($query, ['value' => $value]);
-    }
+    // public function where($column, $value)
+    // {
+    //     $column = addslashes($column);
+    //     $query = "select * from $this->table where $column = :value";
+    //     return $this->run($query, ['value' => $value]);
+    // }
 
-    public function where($column, $value)
-    {
-        $column = addslashes($column);
-        $query = "select * from $this->table where $column = :value";
-        return $this->run($query, ['value' => $value]);
-    }
+    // public function where($column, $value)
+    // {
+    //     $column = addslashes($column);
+    //     $query = "select * from $this->table where $column = :value";
+    //     return $this->run($query, ['value' => $value]);
+    // }
 }
